@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooms &amp; Accommodation — The Elite Peak | Hatton, Sri Lanka</title>
+  <meta name="description" content="Stay at The Elite Peak Villa — vintage-style rooms with hot water, comfortable beds, and mountain views in Hatton, Sri Lanka." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--navy-deep); }
+
+    /* ============================================================
+       CINEMATIC HERO
+    ============================================================ */
+    .rh-hero {
+      position: relative;
+      height: 100vh; min-height: 620px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .rh-hero-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      transform: scale(1.06);
+      animation: heroScale 14s ease-out forwards;
+    }
+    @keyframes heroScale {
+      from { transform: scale(1.06); }
+      to   { transform: scale(1.00); }
+    }
+    .rh-hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top,  rgba(7,7,30,0.92) 0%, rgba(7,7,30,0.55) 45%, rgba(7,7,30,0.22) 100%),
+        linear-gradient(to right, rgba(7,7,30,0.4) 0%, transparent 60%);
+    }
+    .rh-hero-overlay::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='10' y='10' width='60' height='60' fill='none' stroke='%23c9a04c' stroke-width='0.4' opacity='0.25'/%3E%3C/svg%3E");
+      background-size: 80px 80px;
+      opacity: 0.06;
+    }
+    .rh-hero-content {
+      position: relative; z-index: 3;
+      padding: 0 5vw 5rem;
+      max-width: 750px;
+    }
+    .rh-hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      border: 1px solid var(--border-gold);
+      padding: 0.35rem 1rem;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.7s ease forwards 0.3s;
+    }
+    .rh-hero-tag::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+    .rh-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
+    }
+    .rh-hero-title span { color: var(--gold); display: block; font-style: italic; }
+    .rh-hero-rule {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeIn 0.8s ease forwards 0.75s;
+    }
+    .rh-hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 2.2rem;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.9s;
+    }
+    .rh-hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 1.05s;
+    }
+    .rh-hero-scroll {
+      position: absolute; bottom: 2.5rem; right: 5vw; z-index: 3;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0; animation: fadeIn 1s ease forwards 1.5s;
+    }
+    .rh-hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--text-muted2);
+      writing-mode: vertical-rl;
+    }
+    .rh-hero-scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2.2s ease infinite;
+    }
+
+    /* ============================================================
+       PHOTO MARQUEE STRIP
+    ============================================================ */
+    .marquee-section {
+      background: var(--navy-deep);
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 6px 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 6px;
+      width: max-content;
+      animation: marqueeScroll 55s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-photo {
+      width: 200px; height: 130px; flex-shrink: 0;
+      overflow: hidden; cursor: pointer;
+      border: 1px solid rgba(201,160,76,0.15);
+    }
+    .marquee-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(0.8) saturate(0.9);
+      transition: filter 0.4s, transform 0.4s;
+    }
+    .marquee-photo:hover img { filter: brightness(1) saturate(1.1); transform: scale(1.06); }
+
+    /* ============================================================
+       AMENITY STRIP
+    ============================================================ */
+    .amenity-strip { background: var(--navy-mid); border-bottom: 1px solid var(--border-gold); }
+    .amenity-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .amenity-item {
+      padding: 2rem 1rem; text-align: center;
+      border-right: 1px solid var(--border-gold);
+      position: relative; overflow: hidden;
+      transition: background var(--transition);
+    }
+    .amenity-item:last-child { border-right: none; }
+    .amenity-item:hover { background: rgba(201,160,76,0.06); }
+    .amenity-icon { font-size: 1.8rem; display: block; margin-bottom: 0.65rem; }
+    .amenity-label {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold-pale); display: block; margin-bottom: 0.2rem;
+    }
+    .amenity-sub { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ============================================================
+       SECTION INTRO
+    ============================================================ */
+    .rooms-intro-section {
+      background: var(--off-white); padding: 5.5rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .rooms-intro-section::before {
+      content: 'VILLA';
+      position: absolute; right: -0.05em; top: 50%; transform: translateY(-50%);
+      font-family: 'Cinzel', serif; font-size: 18vw; font-weight: 900;
+      color: rgba(201,160,76,0.04); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .rooms-intro-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .rooms-intro-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      font-weight: 700; color: var(--text-dark); margin-bottom: 1.3rem;
+    }
+    .rooms-intro-inner p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; line-height: 1.92;
+      color: var(--text-body); margin-bottom: 0.9rem;
+    }
+
+    /* ============================================================
+       ROOM SHOWCASE — Full-width alternating split
+    ============================================================ */
+    .rooms-showcase { background: var(--navy-deep); }
+    .room-entry {
+      display: flex; align-items: stretch;
+      border-bottom: 1px solid var(--border-gold);
+      position: relative;
+      min-height: 520px;
+    }
+    .room-entry:last-child { border-bottom: none; }
+
+    /* Photos panel */
+    .room-photos-panel {
+      width: 58%; flex-shrink: 0;
+      position: relative; overflow: hidden;
+      cursor: pointer;
+    }
+    .room-entry.rtl .room-photos-panel { order: 2; }
+    .room-entry.rtl .room-info-panel  { order: 1; }
+
+    /* Mosaic grid — 3-photo */
+    .rp-mosaic {
+      display: grid; width: 100%; height: 100%; gap: 3px;
+    }
+    .rp-mosaic--3 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .rp-mosaic--3 .rp:nth-child(1) { grid-row: 1 / 3; }
+    /* 4-photo */
+    .rp-mosaic--4 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    /* 2-photo */
+    .rp-mosaic--2 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .rp {
+      overflow: hidden; position: relative;
+    }
+    .rp img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.55s ease, filter 0.55s ease;
+      filter: brightness(0.88);
+    }
+    .rp:hover img { transform: scale(1.05); filter: brightness(0.96); }
+    /* Expand icon */
+    .rp::after {
+      content: '⤢';
+      position: absolute; top: 0.65rem; right: 0.75rem;
+      font-size: 1rem; color: var(--gold);
+      opacity: 0; transition: opacity 0.3s;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+      pointer-events: none;
+    }
+    .rp:hover::after { opacity: 1; }
+    /* Photo count badge */
+    .room-photo-count {
+      position: absolute; bottom: 0.8rem; left: 0.9rem; z-index: 5;
+      background: rgba(12,12,56,0.82);
+      border: 1px solid var(--border-gold);
+      padding: 0.22rem 0.65rem;
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold);
+      pointer-events: none;
+    }
+
+    /* Info panel */
+    .room-info-panel {
+      flex: 1;
+      background: var(--navy-mid);
+      padding: 3.5rem 3.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .room-info-panel::before {
+      content: attr(data-num);
+      position: absolute; right: -0.05em; bottom: -0.15em;
+      font-family: 'Cinzel', serif; font-size: 11rem; font-weight: 900;
+      color: rgba(201,160,76,0.045); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .room-entry-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .room-entry-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .room-entry-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.15; margin-bottom: 0.4rem;
+    }
+    .room-entry-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic;
+      color: var(--gold-pale); margin-bottom: 1.4rem;
+    }
+    .room-entry-rule {
+      width: 48px; height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 1.4rem;
+    }
+    .room-entry-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.06rem; line-height: 1.82;
+      color: var(--text-muted); margin-bottom: 1.75rem;
+      flex: 1;
+    }
+    .room-amenities-row {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+      margin-bottom: 2rem;
+    }
+    .ram {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.3rem 0.75rem;
+      background: rgba(201,160,76,0.07);
+      border: 1px solid rgba(201,160,76,0.25);
+      font-size: 0.63rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold-pale);
+      transition: background var(--transition);
+    }
+    .ram:hover { background: rgba(201,160,76,0.14); }
+    .room-entry-cta {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       LOBBY — Full bleed cinematic
+    ============================================================ */
+    .lobby-section {
+      position: relative; overflow: hidden;
+      height: 580px;
+    }
+    .lobby-photo {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      filter: brightness(0.6);
+      transform: scale(1.02);
+      transition: transform 8s ease;
+    }
+    .lobby-section:hover .lobby-photo { transform: scale(1.0); }
+    .lobby-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(7,7,30,0.82) 0%, rgba(7,7,30,0.35) 55%, transparent 80%);
+      display: flex; align-items: center;
+      padding: 0 6vw;
+    }
+    .lobby-text { max-width: 480px; }
+    .lobby-text-tag {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--gold); display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 1.3rem;
+    }
+    .lobby-text-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .lobby-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .lobby-text h2 em { font-style: italic; color: var(--gold-pale); }
+    .lobby-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.12rem; font-style: italic;
+      color: rgba(255,255,255,0.65); line-height: 1.75;
+    }
+    .lobby-text-rule {
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.2rem 0;
+    }
+
+    /* ============================================================
+       RESTAURANT — Editorial Gallery
+    ============================================================ */
+    .dining-section {
+      background: #05051a;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Atmospheric film-grain overlay */
+    .dining-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none; z-index: 0;
+    }
+    /* Giant ghost watermark behind photos */
+    .dining-wm {
+      position: absolute;
+      bottom: -1rem; right: -1rem;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(5rem, 16vw, 14rem);
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,160,76,0.06);
+      white-space: nowrap;
+      pointer-events: none; z-index: 0;
+      letter-spacing: 0.08em; line-height: 1;
+      user-select: none;
+    }
+    .dining-head {
+      position: relative; z-index: 2;
+      padding: 5.5rem 2rem 0;
+    }
+    /* The editorial photo grid */
+    .dining-editorial {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 3rem auto 0;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 265px 265px;
+      gap: 4px;
+    }
+    /* Thin gold outer frame around entire grid */
+    .dining-editorial::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(201,160,76,0.12);
+      pointer-events: none; z-index: 4;
+    }
+    /* Individual photo cell */
+    .de-p {
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .de-p img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(0.68) saturate(0.72);
+      transition: filter 0.65s ease, transform 0.65s ease;
+    }
+    .de-p:hover img {
+      filter: brightness(1.0) saturate(1.18);
+      transform: scale(1.06);
+    }
+    /* Gold inset border on hover */
+    .de-p .de-border {
+      position: absolute; inset: 0;
+      border: 2px solid rgba(201,160,76,0);
+      transition: border-color 0.45s ease;
+      z-index: 2; pointer-events: none;
+    }
+    .de-p:hover .de-border { border-color: rgba(201,160,76,0.55); }
+    /* Photo index label */
+    .de-idx {
+      position: absolute; top: 0.85rem; left: 0.95rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem; letter-spacing: 0.38em; text-transform: uppercase;
+      color: rgba(201,160,76,0.45);
+      z-index: 3; transition: color 0.3s;
+    }
+    .de-p:hover .de-idx { color: var(--gold); }
+    /* Caption slides up from bottom */
+    .de-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(5,5,26,0.97) 0%, rgba(5,5,26,0.55) 65%, transparent 100%);
+      padding: 3.5rem 1.1rem 1rem;
+      z-index: 3;
+      transform: translateY(110%);
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .de-p:hover .de-cap { transform: translateY(0); }
+    .de-cap-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic;
+      color: var(--white); display: block; margin-bottom: 0.25rem;
+    }
+    .de-cap-hint {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    /* Gold corner brackets on the featured (first) photo */
+    .de-corner {
+      position: absolute; width: 18px; height: 18px;
+      z-index: 4; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .de-corner-tl { top: 9px; left: 9px;   border-top: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+    .de-corner-tr { top: 9px; right: 9px;  border-top: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+    .de-corner-bl { bottom: 9px; left: 9px;  border-bottom: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+    .de-corner-br { bottom: 9px; right: 9px; border-bottom: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+    /* "Featured" gold badge on photo 1 */
+    .de-badge {
+      position: absolute; top: 0.85rem; right: 0.9rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.45rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,160,76,0.4);
+      padding: 0.25rem 0.5rem;
+      background: rgba(5,5,26,0.6);
+      z-index: 4;
+    }
+    /* Grid placement */
+    .de-p1 { grid-column: 1; grid-row: 1 / 3; }
+    .de-p2 { grid-column: 2; grid-row: 1; }
+    .de-p3 { grid-column: 3; grid-row: 1; }
+    .de-p4 { grid-column: 2; grid-row: 2; }
+    .de-p5 { grid-column: 3; grid-row: 2; }
+    /* Footer row below grid */
+    .dining-foot {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      max-width: 1200px; margin: 0 auto;
+      padding: 2.2rem 2rem 5.5rem;
+      border-top: 1px solid rgba(201,160,76,0.1);
+      margin-top: 4px;
+    }
+    .dining-foot-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-style: italic;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65; max-width: 400px;
+    }
+    .dining-foot-quote em {
+      font-style: normal; color: rgba(201,160,76,0.7);
+    }
+    .dining-foot-btns { display: flex; gap: 1rem; flex-shrink: 0; }
+
+    /* ============================================================
+       ENVIRONMENT — Full masonry gallery (all 6)
+    ============================================================ */
+    .env-section { background: var(--navy-deep); padding: 5.5rem 2rem; }
+    .env-masonry {
+      max-width: 1160px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 300px 260px;
+      gap: 5px;
+    }
+    .ep { overflow: hidden; cursor: pointer; position: relative; }
+    .ep img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(0.82) saturate(1.05);
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+    .ep:hover img { transform: scale(1.07); filter: brightness(0.97) saturate(1.15); }
+    .ep::after {
+      content: '⤢';
+      position: absolute; bottom: 0.7rem; right: 0.8rem;
+      font-size: 1.1rem; color: var(--gold);
+      opacity: 0; transition: opacity 0.3s;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    }
+    .ep:hover::after { opacity: 1; }
+    /* Large panoramic first */
+    .ep:nth-child(1) { grid-column: 1 / 3; }
+    .ep:nth-child(2) { grid-column: 3;     }
+    /* Row 2: all 4 remaining in equal columns */
+    .ep:nth-child(3),
+    .ep:nth-child(4),
+    .ep:nth-child(5),
+    .ep:nth-child(6) { }
+    /* Actually re-layout row 2 as 4 columns of 3 panels */
+    .env-masonry {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 340px 260px;
+    }
+    .ep:nth-child(1) { grid-column: 1 / 3; }
+    .ep:nth-child(2) { grid-column: 3 / 5; }
+    .ep:nth-child(3),
+    .ep:nth-child(4),
+    .ep:nth-child(5),
+    .ep:nth-child(6) { grid-column: auto; }
+
+    /* ============================================================
+       UNIVERSAL LIGHTBOX
+    ============================================================ */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(4,4,18,0.97);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox-inner { position: relative; max-width: 94vw; max-height: 90vh; }
+    .lightbox-img {
+      max-width: 90vw; max-height: 86vh;
+      object-fit: contain; display: block;
+      border: 1px solid rgba(201,160,76,0.35);
+    }
+    .lightbox-caption {
+      position: absolute; bottom: -2rem; left: 0;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.7;
+    }
+    .lightbox-counter {
+      position: absolute; bottom: -2rem; right: 0;
+      font-size: 0.65rem; color: var(--text-muted);
+    }
+    .lightbox-close {
+      position: fixed; top: 1.5rem; right: 1.5rem;
+      background: rgba(12,12,56,0.8);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-pale); font-size: 1.2rem;
+      cursor: pointer; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition); z-index: 5;
+    }
+    .lightbox-close:hover { background: var(--gold); color: var(--navy-deep); }
+    .lightbox-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(12,12,56,0.7);
+      border: 1px solid var(--border-gold);
+      color: var(--gold); font-size: 1.8rem; line-height: 1;
+      cursor: pointer; width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition); z-index: 5;
+    }
+    .lightbox-btn:hover { background: var(--gold); color: var(--navy-deep); }
+    .lb-prev { left: 1.5rem; }
+    .lb-next { right: 1.5rem; }
+    .lb-dots {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 5;
+    }
+    .lb-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(201,160,76,0.3);
+      cursor: pointer; transition: background 0.2s;
+    }
+    .lb-dot.active { background: var(--gold); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1000px) {
+      .room-entry { flex-direction: column; min-height: auto; }
+      .room-entry.rtl .room-photos-panel,
+      .room-entry.rtl .room-info-panel { order: unset; }
+      .room-photos-panel { width: 100%; height: 360px; }
+      .room-info-panel { padding: 2.5rem 2rem; }
+      .room-info-panel::before { font-size: 8rem; }
+      .dining-editorial {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px 220px;
+      }
+      .de-p1 { grid-column: 1 / -1; grid-row: 1; }
+      .de-p2 { grid-column: 1; grid-row: 2; }
+      .de-p3 { grid-column: 2; grid-row: 2; }
+      .de-p4 { grid-column: 1; grid-row: 3; }
+      .de-p5 { grid-column: 2; grid-row: 3; }
+      .dining-foot { flex-direction: column; text-align: center; }
+      .dining-foot-quote { max-width: 100%; }
+      .env-masonry { grid-template-columns: 1fr 1fr; grid-template-rows: 250px 250px 250px; }
+      .ep:nth-child(1) { grid-column: 1 / -1; }
+      .ep:nth-child(2) { grid-column: auto; grid-row: auto; }
+    }
+    @media (max-width: 680px) {
+      .rh-hero { height: 85vh; }
+      .rh-hero-content { padding: 0 1.5rem 4rem; }
+      .amenity-grid { grid-template-columns: 1fr 1fr; }
+      .amenity-item:nth-child(2) { border-right: none; }
+      .amenity-item { border-bottom: 1px solid var(--border-gold); }
+      .amenity-item:nth-child(3),
+      .amenity-item:nth-child(4) { border-bottom: none; }
+      .lobby-section { height: 420px; }
+      .lobby-overlay { padding: 2rem; background: linear-gradient(to top, rgba(7,7,30,0.88) 0%, rgba(7,7,30,0.3) 70%); align-items: flex-end; }
+      .lobby-text { max-width: 100%; }
+      .dining-editorial { grid-template-columns: 1fr; grid-template-rows: unset; }
+      .de-p1, .de-p2, .de-p3, .de-p4, .de-p5 { grid-column: 1; grid-row: auto; aspect-ratio: 4/3; }
+      .env-masonry { grid-template-columns: 1fr; grid-template-rows: unset; }
+      .ep:nth-child(n) { grid-column: 1; grid-row: auto; aspect-ratio: 4/3; }
+      .rp-mosaic--3, .rp-mosaic--4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+      .rp-mosaic--3 .rp:nth-child(1) { grid-row: auto; }
+      .room-photos-panel { height: 300px; }
+      .marquee-photo { width: 150px; height: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="nav-brand">
+      <img src="resources/elitepeak_icon.jpg" alt="The Elite Peak" class="nav-logo" />
+      <span class="nav-name">The Elite Peak</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="rooms.html" class="active">Rooms</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="tel:+94512225527" class="nav-cta">Reserve</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="nav-drawer" id="navDrawer">
+    <button class="drawer-close" id="drawerClose">✕</button>
+    <ul>
+      <li><a href="index.html" class="drawer-link">Home</a></li>
+      <li><a href="menu.html" class="drawer-link">Menu</a></li>
+      <li><a href="about.html" class="drawer-link">About</a></li>
+      <li><a href="rooms.html" class="drawer-link active">Rooms</a></li>
+      <li><a href="contact.html" class="drawer-link">Contact</a></li>
+      <li><a href="tel:+94512225527" class="drawer-link">📞 +94 512 225 527</a></li>
+      <li><a href="tel:+94777599760" class="drawer-link">📱 +94 777 599 760</a></li>
+      <li><a href="tel:+94761947579" class="drawer-link">📱 +94 761 947 579</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================================
+       CINEMATIC HERO
+  ============================================================ -->
+  <section class="rh-hero">
+    <img class="rh-hero-photo"
+         src="resources/environment/IMG_7091.JPG"
+         alt="Hatton highlands — The Elite Peak" />
+    <div class="rh-hero-overlay"></div>
+    <div class="rh-hero-content">
+      <div class="rh-hero-tag">Villa Accommodation</div>
+      <h1 class="rh-hero-title">
+        Rooms &amp; Stays<span>in the highlands</span>
+      </h1>
+      <div class="rh-hero-rule"></div>
+      <p class="rh-hero-sub">Vintage-style comfort at 1,100 metres · Hatton, Sri Lanka</p>
+      <div class="rh-hero-actions">
+        <a href="tel:+94512225527" class="btn btn-gold">📞 Book a Room</a>
+        <a href="#our-rooms" class="btn btn-outline-white">View All Rooms ↓</a>
+      </div>
+    </div>
+    <div class="rh-hero-scroll">
+      <span>Explore</span>
+      <div class="rh-hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PHOTO MARQUEE — all 25 photos scrolling
+  ============================================================ -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <div class="marquee-photo" data-lb="0"><img src="resources/room_1/IMG_7073.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="3"><img src="resources/room_2/IMG_7076.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="18"><img src="resources/environment/IMG_7089.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="6"><img src="resources/room_3/IMG_7079.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="13"><img src="resources/resturant/IMG_7087.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="8"><img src="resources/room-4/IMG_7083.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="19"><img src="resources/environment/IMG_7090.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="1"><img src="resources/room_1/IMG_7074.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="12"><img src="resources/lobby/IMG_7108.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="14"><img src="resources/resturant/IMG_7088.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="20"><img src="resources/environment/IMG_7091.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="9"><img src="resources/room-4/IMG_7084.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="4"><img src="resources/room_2/IMG_7078.JPG" alt="" loading="lazy" /></div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="marquee-photo" data-lb="0"><img src="resources/room_1/IMG_7073.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="3"><img src="resources/room_2/IMG_7076.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="18"><img src="resources/environment/IMG_7089.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="6"><img src="resources/room_3/IMG_7079.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="13"><img src="resources/resturant/IMG_7087.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="8"><img src="resources/room-4/IMG_7083.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="19"><img src="resources/environment/IMG_7090.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="1"><img src="resources/room_1/IMG_7074.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="12"><img src="resources/lobby/IMG_7108.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="14"><img src="resources/resturant/IMG_7088.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="20"><img src="resources/environment/IMG_7091.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="9"><img src="resources/room-4/IMG_7084.JPG" alt="" loading="lazy" /></div>
+      <div class="marquee-photo" data-lb="4"><img src="resources/room_2/IMG_7078.JPG" alt="" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <!-- AMENITY STRIP -->
+  <div class="amenity-strip">
+    <div class="amenity-grid reveal-stagger">
+      <div class="amenity-item">
+        <span class="amenity-icon">🛏️</span>
+        <span class="amenity-label">4 Rooms</span>
+        <span class="amenity-sub">Cozy &amp; private</span>
+      </div>
+      <div class="amenity-item">
+        <span class="amenity-icon">🚿</span>
+        <span class="amenity-label">Hot Water</span>
+        <span class="amenity-sub">En-suite bathing</span>
+      </div>
+      <div class="amenity-item">
+        <span class="amenity-icon">🚭</span>
+        <span class="amenity-label">Non-Smoking</span>
+        <span class="amenity-sub">All rooms</span>
+      </div>
+      <div class="amenity-item">
+        <span class="amenity-icon">🏔️</span>
+        <span class="amenity-label">Mountain Views</span>
+        <span class="amenity-sub">Hatton highlands</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="rooms-intro-section">
+    <div class="rooms-intro-inner reveal">
+      <div class="section-rule" style="margin-bottom:2rem"></div>
+      <h2>A Retreat Above the Clouds</h2>
+      <p>Nestled in the cool highlands of Hatton at over 1,100 metres, The Elite Peak Villa offers four vintage-style rooms where warm hospitality meets mountain serenity. Each room is thoughtfully appointed with comfortable beds, hot water bathing, and the quiet charm of a bygone era.</p>
+      <p>Wake to crisp highland air, dine on our celebrated cuisine just steps away, and let the Dimbulla valley unfold before you.</p>
+      <div class="section-rule" style="margin-top:2rem"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ROOM SHOWCASE — 4 rooms, alternating full-width
+  ============================================================ -->
+  <section class="rooms-showcase" id="our-rooms">
+
+    <!-- ROOM 01 — photos LEFT, text RIGHT -->
+    <article class="room-entry reveal">
+      <div class="room-photos-panel">
+        <div class="rp-mosaic rp-mosaic--3">
+          <div class="rp" data-lb="0">
+            <img src="resources/room_1/IMG_7073.JPG" alt="Room 1 — The Elite Peak" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="1">
+            <img src="resources/room_1/IMG_7074.JPG" alt="Room 1 — view 2" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="2">
+            <img src="resources/room_1/IMG_7106.JPG" alt="Room 1 — view 3" loading="lazy" />
+          </div>
+        </div>
+        <div class="room-photo-count">3 Photos</div>
+      </div>
+      <div class="room-info-panel" data-num="01">
+        <div class="room-entry-tag">Accommodation · 01</div>
+        <h2 class="room-entry-title">The Highland Room</h2>
+        <p class="room-entry-subtitle">Warm character · Mountain air · Restful quiet</p>
+        <div class="room-entry-rule"></div>
+        <p class="room-entry-desc">A warm and welcoming retreat dressed in vintage character. Comfortable beds, warm earthy tones, and the cool highland breeze make this room a true sanctuary after a day of exploring the Dimbulla valley. Fall asleep to silence, wake to birdsong.</p>
+        <div class="room-amenities-row">
+          <span class="ram">🚭 Non-Smoking</span>
+          <span class="ram">🚿 Hot Water</span>
+          <span class="ram">🛏️ Comfortable Beds</span>
+          <span class="ram">🎨 Vintage Style</span>
+        </div>
+        <div class="room-entry-cta">
+          <a href="tel:+94512225527" class="btn btn-gold">📞 Enquire Now</a>
+          <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.9rem; color:var(--text-muted)">Call to check availability</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ROOM 02 — photos RIGHT, text LEFT -->
+    <article class="room-entry rtl reveal">
+      <div class="room-photos-panel">
+        <div class="rp-mosaic rp-mosaic--3">
+          <div class="rp" data-lb="3">
+            <img src="resources/room_2/IMG_7076.JPG" alt="Room 2 — The Elite Peak" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="4">
+            <img src="resources/room_2/IMG_7078.JPG" alt="Room 2 — view 2" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="5">
+            <img src="resources/room_2/IMG_7105.JPG" alt="Room 2 — view 3" loading="lazy" />
+          </div>
+        </div>
+        <div class="room-photo-count">3 Photos</div>
+      </div>
+      <div class="room-info-panel" data-num="02">
+        <div class="room-entry-tag">Accommodation · 02</div>
+        <h2 class="room-entry-title">The Garden Room</h2>
+        <p class="room-entry-subtitle">Our Largest Room · Sunlit serenity · Natural light · Vintage charm</p>
+        <div class="room-entry-rule"></div>
+        <p class="room-entry-desc">The Garden Room is our largest and most spacious accommodation — a sunlit highland retreat with generous proportions, natural light, and earthy vintage furnishings. Perfect for those who want room to breathe. A hot shower and supremely restful beds round off the experience in style.</p>
+        <div class="room-amenities-row">
+          <span class="ram">🚭 Non-Smoking</span>
+          <span class="ram">🚿 Hot Water</span>
+          <span class="ram">🛏️ Comfortable Beds</span>
+          <span class="ram">🎨 Vintage Style</span>
+        </div>
+        <div class="room-entry-cta">
+          <a href="tel:+94512225527" class="btn btn-gold">📞 Enquire Now</a>
+          <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.9rem; color:var(--text-muted)">Call to check availability</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ROOM 03 — photos LEFT, text RIGHT -->
+    <article class="room-entry reveal">
+      <div class="room-photos-panel">
+        <div class="rp-mosaic rp-mosaic--2">
+          <div class="rp" data-lb="6">
+            <img src="resources/room_3/IMG_7079.JPG" alt="Room 3 — The Elite Peak" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="7">
+            <img src="resources/room_3/IMG_7080.JPG" alt="Room 3 — view 2" loading="lazy" />
+          </div>
+        </div>
+        <div class="room-photo-count">2 Photos</div>
+      </div>
+      <div class="room-info-panel" data-num="03">
+        <div class="room-entry-tag">Accommodation · 03</div>
+        <h2 class="room-entry-title">The Valley Room</h2>
+        <p class="room-entry-subtitle">Intimate retreat · Couples &amp; solo · Quiet elegance</p>
+        <div class="room-entry-rule"></div>
+        <p class="room-entry-desc">Tucked in quiet elegance, the Valley Room offers an intimate atmosphere ideal for couples or solo travellers seeking solitude. Classic vintage décor, crisp linens, and a hot shower await you after an evening of fine dining at The Elite Peak restaurant below.</p>
+        <div class="room-amenities-row">
+          <span class="ram">🚭 Non-Smoking</span>
+          <span class="ram">🚿 Hot Water</span>
+          <span class="ram">🛏️ Comfortable Beds</span>
+          <span class="ram">🎨 Vintage Style</span>
+        </div>
+        <div class="room-entry-cta">
+          <a href="tel:+94512225527" class="btn btn-gold">📞 Enquire Now</a>
+          <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.9rem; color:var(--text-muted)">Call to check availability</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ROOM 04 — photos RIGHT, text LEFT -->
+    <article class="room-entry rtl reveal">
+      <div class="room-photos-panel">
+        <div class="rp-mosaic rp-mosaic--4">
+          <div class="rp" data-lb="8">
+            <img src="resources/room-4/IMG_7083.JPG" alt="Room 4 — The Elite Peak" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="9">
+            <img src="resources/room-4/IMG_7084.JPG" alt="Room 4 — view 2" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="10">
+            <img src="resources/room-4/IMG_7102.JPG" alt="Room 4 — view 3" loading="lazy" />
+          </div>
+          <div class="rp" data-lb="11">
+            <img src="resources/room-4/IMG_7104.JPG" alt="Room 4 — view 4" loading="lazy" />
+          </div>
+        </div>
+        <div class="room-photo-count">4 Photos</div>
+      </div>
+      <div class="room-info-panel" data-num="04">
+        <div class="room-entry-tag">Accommodation · 04</div>
+        <h2 class="room-entry-title">The Peak Suite</h2>
+        <p class="room-entry-subtitle">Most spacious · Vintage grandeur · Prized highland escape</p>
+        <div class="room-entry-rule"></div>
+        <p class="room-entry-desc">Our most expansive offering — the Peak Suite envelops you in warmth and vintage grandeur. Four generously framed perspectives reveal the space's character: classic furnishings, restful beds, and the finest highland air. The perfect escape for those who seek a little extra comfort and privacy.</p>
+        <div class="room-amenities-row">
+          <span class="ram">🚭 Non-Smoking</span>
+          <span class="ram">🚿 Hot Water</span>
+          <span class="ram">🛏️ Comfortable Beds</span>
+          <span class="ram">🎨 Vintage Style</span>
+        </div>
+        <div class="room-entry-cta">
+          <a href="tel:+94512225527" class="btn btn-gold">📞 Enquire Now</a>
+          <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.9rem; color:var(--text-muted)">Call to check availability</span>
+        </div>
+      </div>
+    </article>
+
+  </section><!-- /rooms-showcase -->
+
+  <!-- ============================================================
+       LOBBY — Cinematic full-bleed
+  ============================================================ -->
+  <section class="lobby-section">
+    <img class="lobby-photo" src="resources/lobby/IMG_7108.JPG" alt="The Elite Peak Lobby" loading="lazy" data-lb="12" />
+    <div class="lobby-overlay">
+      <div class="lobby-text reveal">
+        <div class="lobby-text-tag">Our Welcome</div>
+        <div class="lobby-text-rule"></div>
+        <h2>Arrive to<em> Elegance</em></h2>
+        <p>"Step into our lobby and feel the warmth of the highland welcome — where every visit begins with a quiet sense of belonging."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RESTAURANT — Bento (all 5 photos shown)
+  ============================================================ -->
+  <section class="dining-section">
+    <div class="dining-wm">ÉLITE</div>
+
+    <div class="dining-head section-header">
+      <p class="section-eyebrow">Dine With Us</p>
+      <h2 class="section-title section-title-light">À La Carte &amp; South Indian</h2>
+      <div class="section-rule"></div>
+      <p class="section-sub section-sub-light">Fine dining steps from your room · 128+ dishes · Open daily until 10 PM</p>
+    </div>
+
+    <div class="dining-editorial reveal">
+
+      <!-- Photo 1 — featured, tall, spans both rows -->
+      <div class="de-p de-p1" data-lb="13">
+        <div class="de-corner de-corner-tl"></div>
+        <div class="de-corner de-corner-tr"></div>
+        <div class="de-corner de-corner-bl"></div>
+        <div class="de-corner de-corner-br"></div>
+        <div class="de-badge">Featured</div>
+        <div class="de-border"></div>
+        <div class="de-idx">01 / 05</div>
+        <img src="resources/resturant/IMG_7087.JPG" alt="The Dining Room" loading="lazy" />
+        <div class="de-cap">
+          <span class="de-cap-name">The Dining Room</span>
+          <span class="de-cap-hint">Click to enlarge</span>
+        </div>
+      </div>
+
+      <!-- Photos 2–5 fill the 2×2 right grid -->
+      <div class="de-p de-p2" data-lb="14">
+        <div class="de-border"></div>
+        <div class="de-idx">02 / 05</div>
+        <img src="resources/resturant/IMG_7088.JPG" alt="Restaurant Interior" loading="lazy" />
+        <div class="de-cap">
+          <span class="de-cap-name">Restaurant Interior</span>
+          <span class="de-cap-hint">Click to enlarge</span>
+        </div>
+      </div>
+
+      <div class="de-p de-p3" data-lb="15">
+        <div class="de-border"></div>
+        <div class="de-idx">03 / 05</div>
+        <img src="resources/resturant/IMG_7109.JPG" alt="Evening Dining" loading="lazy" />
+        <div class="de-cap">
+          <span class="de-cap-name">Evening Dining</span>
+          <span class="de-cap-hint">Click to enlarge</span>
+        </div>
+      </div>
+
+      <div class="de-p de-p4" data-lb="16">
+        <div class="de-border"></div>
+        <div class="de-idx">04 / 05</div>
+        <img src="resources/resturant/IMG_7110.JPG" alt="Table Setting" loading="lazy" />
+        <div class="de-cap">
+          <span class="de-cap-name">Table Setting</span>
+          <span class="de-cap-hint">Click to enlarge</span>
+        </div>
+      </div>
+
+      <div class="de-p de-p5" data-lb="17">
+        <div class="de-border"></div>
+        <div class="de-idx">05 / 05</div>
+        <img src="resources/resturant/IMG_7115.JPG" alt="Restaurant Atmosphere" loading="lazy" />
+        <div class="de-cap">
+          <span class="de-cap-name">Restaurant Atmosphere</span>
+          <span class="de-cap-hint">Click to enlarge</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dining-foot">
+      <p class="dining-foot-quote">Every meal at The Elite Peak is a journey through the flavours of Sri Lanka — prepared fresh, served with grace, and enjoyed beneath the <em>cool mountain air</em> of Hatton.</p>
+      <div class="dining-foot-btns">
+        <a href="menu.html" class="btn btn-gold">View Our Full Menu</a>
+        <a href="menu.html" class="btn btn-outline-gold">128+ Dishes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ENVIRONMENT GALLERY — all 6 photos
+  ============================================================ -->
+  <section class="env-section">
+    <div class="section-header">
+      <p class="section-eyebrow">The Setting</p>
+      <h2 class="section-title section-title-light">Surrounded by Nature</h2>
+      <div class="section-rule"></div>
+      <p class="section-sub section-sub-light">The Dimbulla Valley, tea estates &amp; highland peaks — right at your doorstep</p>
+    </div>
+    <div class="env-masonry reveal">
+      <div class="ep" data-lb="18">
+        <img src="resources/environment/IMG_7089.JPG" alt="Hatton Highlands" loading="lazy" />
+      </div>
+      <div class="ep" data-lb="19">
+        <img src="resources/environment/IMG_7090.JPG" alt="Dimbulla Valley view" loading="lazy" />
+      </div>
+      <div class="ep" data-lb="20">
+        <img src="resources/environment/IMG_7091.JPG" alt="Tea estates" loading="lazy" />
+      </div>
+      <div class="ep" data-lb="21">
+        <img src="resources/environment/IMG_7093.JPG" alt="Mountain scenery" loading="lazy" />
+      </div>
+      <div class="ep" data-lb="22">
+        <img src="resources/environment/IMG_7095.JPG" alt="Highland landscape" loading="lazy" />
+      </div>
+      <div class="ep" data-lb="23">
+        <img src="resources/environment/IMG_7096.JPG" alt="Sri Lanka highlands" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       UNIVERSAL LIGHTBOX
+  ============================================================ -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <button class="lightbox-btn lb-prev" id="lbPrev">‹</button>
+    <div class="lightbox-inner">
+      <img class="lightbox-img" id="lbImg" src="" alt="" />
+      <div class="lightbox-caption" id="lbCaption"></div>
+      <div class="lightbox-counter" id="lbCounter"></div>
+    </div>
+    <button class="lightbox-btn lb-next" id="lbNext">›</button>
+    <div class="lb-dots" id="lbDots"></div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h3>Book Your Highland Stay</h3>
+    <p>All 4 rooms available on request — call us to check availability and rates.</p>
+    <div class="btn-group">
+      <a href="tel:+94512225527" class="btn btn-gold">📞 +94 512 225 527</a>
+      <a href="tel:+94777599760" class="btn btn-outline-gold">📱 +94 777 599 760</a>
+      <a href="contact.html" class="btn btn-outline-white">Get Directions</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><img src="resources/elitepeak_icon.jpg" alt="The Elite Peak" /></div>
+        <div class="footer-name">THE ELITE PEAK</div>
+        <p class="footer-tagline">"A Symphony of Taste,<br>Elegance, and Service."</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul>
+          <li>No 11, 1st Lane</li>
+          <li>Dimbulla Rd, Hatton</li>
+          <li>22000, Sri Lanka</li>
+          <li style="margin-top:0.6rem"><a href="tel:+94512225527">+94 512 225 527</a></li>
+          <li><a href="tel:+94777599760">+94 777 599 760</a></li>
+          <li><a href="tel:+94761947579">+94 761 947 579</a></li>
+          <li>Open daily · closes 10 PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 The Elite Peak. Villa &amp; Family Restaurant · Hatton, Sri Lanka</p>
+      <p><a href="https://share.google/OejDSe92kYvIMkp5R" target="_blank" rel="noopener">Google Maps</a> · <a href="tel:+94512225527">+94 512 225 527</a> · <a href="tel:+94777599760">+94 777 599 760</a> · <a href="tel:+94761947579">+94 761 947 579</a></p>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+  /* ============================================================
+     UNIVERSAL LIGHTBOX — covers all 25 images on the page
+  ============================================================ */
+  const ALL_IMAGES = [
+    // Rooms 1–4 (indices 0–12)
+    { src: 'resources/room_1/IMG_7073.JPG',     caption: 'Room 01 — The Highland Room' },
+    { src: 'resources/room_1/IMG_7074.JPG',     caption: 'Room 01 — The Highland Room' },
+    { src: 'resources/room_1/IMG_7106.JPG',     caption: 'Room 01 — The Highland Room' },
+    { src: 'resources/room_2/IMG_7076.JPG',     caption: 'Room 02 — The Garden Room' },
+    { src: 'resources/room_2/IMG_7078.JPG',     caption: 'Room 02 — The Garden Room' },
+    { src: 'resources/room_2/IMG_7105.JPG',     caption: 'Room 02 — The Garden Room' },
+    { src: 'resources/room_3/IMG_7079.JPG',     caption: 'Room 03 — The Valley Room' },
+    { src: 'resources/room_3/IMG_7080.JPG',     caption: 'Room 03 — The Valley Room' },
+    { src: 'resources/room-4/IMG_7083.JPG',     caption: 'Room 04 — The Peak Suite' },
+    { src: 'resources/room-4/IMG_7084.JPG',     caption: 'Room 04 — The Peak Suite' },
+    { src: 'resources/room-4/IMG_7102.JPG',     caption: 'Room 04 — The Peak Suite' },
+    { src: 'resources/room-4/IMG_7104.JPG',     caption: 'Room 04 — The Peak Suite' },
+    // Lobby (12)
+    { src: 'resources/lobby/IMG_7108.JPG',      caption: 'The Lobby' },
+    // Restaurant (13–17)
+    { src: 'resources/resturant/IMG_7087.JPG',  caption: 'The Dining Room' },
+    { src: 'resources/resturant/IMG_7088.JPG',  caption: 'Restaurant Interior' },
+    { src: 'resources/resturant/IMG_7109.JPG',  caption: 'Evening Dining' },
+    { src: 'resources/resturant/IMG_7110.JPG',  caption: 'Table Setting' },
+    { src: 'resources/resturant/IMG_7115.JPG',  caption: 'Restaurant Atmosphere' },
+    // Environment (18–23)
+    { src: 'resources/environment/IMG_7089.JPG', caption: 'Hatton Highlands' },
+    { src: 'resources/environment/IMG_7090.JPG', caption: 'Dimbulla Valley' },
+    { src: 'resources/environment/IMG_7091.JPG', caption: 'Tea Estates' },
+    { src: 'resources/environment/IMG_7093.JPG', caption: 'Mountain Scenery' },
+    { src: 'resources/environment/IMG_7095.JPG', caption: 'Highland Landscape' },
+    { src: 'resources/environment/IMG_7096.JPG', caption: 'Sri Lanka Highlands' },
+  ];
+
+  let lbIndex = 0;
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lbImg');
+  const lbCap   = document.getElementById('lbCaption');
+  const lbCtr   = document.getElementById('lbCounter');
+  const dotsEl  = document.getElementById('lbDots');
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    ALL_IMAGES.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'lb-dot' + (i === lbIndex ? ' active' : '');
+      d.onclick = (e) => { e.stopPropagation(); goToLb(i); };
+      dotsEl.appendChild(d);
+    });
+  }
+
+  function goToLb(index) {
+    lbIndex = (index + ALL_IMAGES.length) % ALL_IMAGES.length;
+    lbImg.style.opacity = '0';
+    setTimeout(() => {
+      lbImg.src = ALL_IMAGES[lbIndex].src;
+      lbImg.style.opacity = '1';
+    }, 150);
+    lbCap.textContent = ALL_IMAGES[lbIndex].caption;
+    lbCtr.textContent = (lbIndex + 1) + ' / ' + ALL_IMAGES.length;
+    buildDots();
+  }
+
+  function openLightbox(index) {
+    lbIndex = index;
+    lbImg.src = ALL_IMAGES[index].src;
+    lbImg.style.opacity = '1';
+    lbCap.textContent = ALL_IMAGES[index].caption;
+    lbCtr.textContent = (index + 1) + ' / ' + ALL_IMAGES.length;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    buildDots();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lbClose').onclick = closeLightbox;
+  document.getElementById('lbPrev').onclick  = (e) => { e.stopPropagation(); goToLb(lbIndex - 1); };
+  document.getElementById('lbNext').onclick  = (e) => { e.stopPropagation(); goToLb(lbIndex + 1); };
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  goToLb(lbIndex - 1);
+    if (e.key === 'ArrowRight') goToLb(lbIndex + 1);
+  });
+
+  /* Wire up all [data-lb] elements */
+  document.querySelectorAll('[data-lb]').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => openLightbox(parseInt(el.dataset.lb, 10)));
+  });
+
+  /* Marquee: also wire photo strip */
+  document.querySelectorAll('.marquee-photo').forEach(el => {
+    el.addEventListener('click', () => openLightbox(parseInt(el.dataset.lb, 10)));
+  });
+
+  /* Lobby photo direct click */
+  document.querySelector('.lobby-photo').addEventListener('click', () => openLightbox(13));
+  </script>
+</body>
+</html>

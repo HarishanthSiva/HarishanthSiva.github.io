@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — The Elite Peak | Hatton, Sri Lanka</title>
+  <meta name="description" content="Find The Elite Peak restaurant in Hatton, Sri Lanka. Address, phone number, opening hours and Google Maps directions." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--navy-deep); }
+    .contact-page {
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,160,76,0.07) 0%, transparent 55%),
+        linear-gradient(155deg, #090930 0%, #13134a 45%, #0e0e42 80%, #090930 100%);
+    }
+
+    /* Larger map on contact page */
+    .map-block-lg {
+      border: 1px solid var(--border-gold);
+      overflow: hidden;
+    }
+    .map-block-lg iframe { width: 100%; height: 420px; display: block; }
+    .map-block-lg .map-footer {
+      background: var(--navy-mid);
+      padding: 1rem 1.4rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .map-block-lg .map-footer span { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .map-block-lg .map-footer a { font-size: 0.72rem; font-weight: 700; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; }
+    .map-block-lg .map-footer a:hover { color: var(--gold-light); }
+
+    .contact-actions-row {
+      display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;
+    }
+
+    /* Address card style */
+    .address-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--border-gold);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .address-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--white);
+      line-height: 1.7;
+    }
+    .address-card strong {
+      display: block;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+
+    /* Hours grid */
+    .hours-table {
+      width: 100%; border-collapse: collapse;
+      font-family: 'Cormorant Garamond', serif;
+      margin-top: 0.5rem;
+    }
+    .hours-table tr { border-bottom: 1px solid rgba(201,160,76,0.1); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td {
+      padding: 0.6rem 0;
+      font-size: 1rem; color: var(--white);
+    }
+    .hours-table td:last-child { text-align: right; color: var(--gold); font-weight: 600; }
+
+    /* Contact-page enhanced visual badges */
+    .contact-badge-row {
+      display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.75rem;
+    }
+    .contact-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.38rem 0.9rem;
+      border: 1px solid rgba(201,160,76,0.28);
+      background: rgba(201,160,76,0.06);
+      font-size: 0.64rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold-pale);
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .contact-badge:hover { background: rgba(201,160,76,0.13); border-color: var(--gold); }
+
+    /* Rating visual in contact block */
+    .contact-rating-row {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-top: 0.2rem; margin-bottom: 0;
+    }
+    .contact-rating-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.05em; }
+    .contact-rating-label { font-size: 0.7rem; color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      .map-block-lg iframe { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="nav-brand">
+      <img src="resources/elitepeak_icon.jpg" alt="The Elite Peak" class="nav-logo" />
+      <span class="nav-name">The Elite Peak</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="rooms.html">Rooms</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="tel:+94512225527" class="nav-cta">Reserve</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="nav-drawer" id="navDrawer">
+    <button class="drawer-close" id="drawerClose">✕</button>
+    <ul>
+      <li><a href="index.html" class="drawer-link">Home</a></li>
+      <li><a href="menu.html" class="drawer-link">Menu</a></li>
+      <li><a href="about.html" class="drawer-link">About</a></li>
+      <li><a href="rooms.html" class="drawer-link">Rooms</a></li>
+      <li><a href="contact.html" class="drawer-link active">Contact</a></li>
+      <li><a href="tel:+94512225527" class="drawer-link">📞 +94 512 225 527</a></li>
+      <li><a href="tel:+94777599760" class="drawer-link">📱 +94 777 599 760</a></li>
+      <li><a href="tel:+94761947579" class="drawer-link">📱 +94 761 947 579</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <div class="page-banner-bg"></div>
+    <div class="page-banner-content">
+      <p class="page-banner-eyebrow">Find Us</p>
+      <h1 class="page-banner-title">Contact &amp; Directions</h1>
+      <div class="page-banner-rule"></div>
+      <p class="page-banner-sub">We'd love to welcome you to The Elite Peak</p>
+    </div>
+  </div>
+
+  <!-- CONTACT BODY -->
+  <section class="section contact-page">
+    <div class="contact-grid reveal">
+
+      <!-- LEFT: Info -->
+      <div class="contact-block">
+        <h3>Visit Us</h3>
+
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <strong>Address</strong>
+            <span>No 11, 1st Lane, Dimbulla Rd,<br/>Hatton 22000, Sri Lanka</span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <strong>Phone</strong>
+            <span><a href="tel:+94512225527">+94 512 225 527</a><br/><a href="tel:+94777599760">+94 777 599 760</a><br/><a href="tel:+94761947579">+94 761 947 579</a></span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">🕙</div>
+          <div class="contact-text">
+            <strong>Opening Hours</strong>
+            <span>Open Daily · Closes 10:00 PM<br/><small style="font-size:0.85rem;color:#888">Hours may vary on public holidays</small></span>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">⭐</div>
+          <div class="contact-text">
+            <strong>Rating</strong>
+            <div class="contact-rating-row">
+              <span class="contact-rating-stars">★★★★★</span>
+              <span class="contact-rating-label">4.7 out of 5 · 147 Google reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">🍽️</div>
+          <div class="contact-text">
+            <strong>Services</strong>
+            <span>À La Carte · Outdoor Seating<br/>Vegetarian Options · Family Dining · Villa Rooms</span>
+          </div>
+        </div>
+
+        <div class="contact-badge-row">
+          <span class="contact-badge">✓ Walk-ins Welcome</span>
+          <span class="contact-badge">✓ Open Daily</span>
+          <span class="contact-badge">✓ Family Friendly</span>
+          <span class="contact-badge">✓ Vegetarian</span>
+          <a href="rooms.html" class="contact-badge" style="color:var(--gold);border-color:var(--gold)">🛏 Villa Rooms</a>
+        </div>
+
+        <div class="contact-actions-row">
+          <a href="tel:+94512225527" class="btn btn-gold">📞 +94 512 225 527</a>
+          <a href="tel:+94777599760" class="btn btn-gold">📱 +94 777 599 760</a>
+          <a href="tel:+94761947579" class="btn btn-gold">📱 +94 761 947 579</a>
+          <a href="https://share.google/OejDSe92kYvIMkp5R" target="_blank" rel="noopener" class="btn btn-navy">🗺 Open in Google Maps</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Map + hours -->
+      <div>
+        <div class="map-block-lg">
+          <iframe
+            src="https://maps.google.com/maps?q=No+11+1st+lane+Dimbulla+Rd+Hatton+22000+Sri+Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+            title="The Elite Peak Location" allowfullscreen loading="lazy"
+          ></iframe>
+          <div class="map-footer">
+            <span>Hatton, Sri Lanka</span>
+            <a href="https://share.google/OejDSe92kYvIMkp5R" target="_blank" rel="noopener">Open in Google Maps →</a>
+          </div>
+        </div>
+
+        <!-- Hours table -->
+        <div class="address-card">
+          <strong>Weekly Hours</strong>
+          <table class="hours-table">
+            <tr><td>Monday</td><td>Open · until 10 PM</td></tr>
+            <tr><td>Tuesday</td><td>Open · until 10 PM</td></tr>
+            <tr><td>Wednesday</td><td>Open · until 10 PM</td></tr>
+            <tr><td>Thursday</td><td>Open · until 10 PM</td></tr>
+            <tr><td>Friday</td><td>Open · until 10 PM</td></tr>
+            <tr><td>Saturday</td><td>Open · until 10 PM</td></tr>
+            <tr><td>Sunday</td><td>Open · until 10 PM</td></tr>
+          </table>
+          <p style="margin-top:1rem;font-size:0.78rem;color:rgba(255,255,255,0.4);font-family:'Lato',sans-serif;">Hours may be affected by Full Moon Poya Day and public holidays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO GET THERE -->
+  <section class="info-section" style="padding:4rem 2rem;">
+    <div class="section-header">
+      <p class="section-eyebrow">Getting Here</p>
+      <h2 class="section-title section-title-light">How to Find Us</h2>
+      <div class="section-rule"></div>
+      <p class="section-sub section-sub-light">We are located in Hatton — Sri Lanka's scenic hill country, famous for its tea estates and cool mountain air.</p>
+    </div>
+    <div style="max-width:700px;margin:0 auto;text-align:center" class="reveal">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text-muted);line-height:1.8;margin-bottom:2rem">
+        The Elite Peak is situated on Dimbulla Road, Hatton — easily accessible from the town centre. Look for our sign on the 1st Lane off Dimbulla Rd.
+      </p>
+      <a href="https://share.google/OejDSe92kYvIMkp5R" target="_blank" rel="noopener" class="btn btn-gold">Open Google Maps for Directions</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <h3>We're Open Every Day</h3>
+    <p>No reservation required — walk in and let us take care of the rest.</p>
+    <div class="btn-group">
+      <a href="tel:+94512225527" class="btn btn-gold">📞 +94 512 225 527</a>
+      <a href="tel:+94777599760" class="btn btn-gold">📱 +94 777 599 760</a>
+      <a href="tel:+94761947579" class="btn btn-gold">📱 +94 761 947 579</a>
+      <a href="menu.html" class="btn btn-outline-gold">Browse Our Menu</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><img src="resources/elitepeak_icon.jpg" alt="The Elite Peak" /></div>
+        <div class="footer-name">THE ELITE PEAK</div>
+        <p class="footer-tagline">"A Symphony of Taste,<br>Elegance, and Service."</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="rooms.html">Rooms</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul>
+          <li>No 11, 1st Lane</li>
+          <li>Dimbulla Rd, Hatton</li>
+          <li>22000, Sri Lanka</li>
+          <li style="margin-top:0.6rem"><a href="tel:+94512225527">+94 512 225 527</a></li>
+          <li><a href="tel:+94777599760">+94 777 599 760</a></li>
+          <li><a href="tel:+94761947579">+94 761 947 579</a></li>
+          <li>Open daily · closes 10 PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 The Elite Peak. Villa &amp; Family Restaurant · Hatton, Sri Lanka</p>
+      <p><a href="https://share.google/OejDSe92kYvIMkp5R" target="_blank" rel="noopener">Google Maps</a> · <a href="tel:+94512225527">+94 512 225 527</a> · <a href="tel:+94777599760">+94 777 599 760</a> · <a href="tel:+94761947579">+94 761 947 579</a></p>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+</html>

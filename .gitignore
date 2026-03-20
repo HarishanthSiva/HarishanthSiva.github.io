@@ -1,0 +1,25 @@
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Claude Code local config — keep private
+.claude/
+
+# SSH keys — never commit these
+private
+private.pub
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Dev-only files not needed on the live site
+CLAUDE.md
+menu.json
+elite_logo.jpg
+
+# Stray files not part of the website
+resources/2410.05779v3.pdf
