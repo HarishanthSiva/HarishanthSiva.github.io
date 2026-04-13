@@ -269,10 +269,10 @@ var MENU_DATA = {
         {
           "layout": "grid",
           "items": [
-            { "name": "Vegetable Rice & Curry", "price": 380 },
-            { "name": "Egg Rice & Curry",       "price": 480 },
-            { "name": "Chicken Rice & Curry",   "price": 600 },
-            { "name": "Fish Rice & Curry",      "price": 780, "note": "Thalapath" }
+            { "name": "Vegetable Rice & Curry", "price": 430 },
+            { "name": "Egg Rice & Curry",       "price": 530 },
+            { "name": "Chicken Rice & Curry",   "price": 650 },
+            { "name": "Fish Rice & Curry",      "price": 830, "note": "Thalapath" }
           ]
         }
       ]
