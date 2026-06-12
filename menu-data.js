@@ -262,6 +262,25 @@ var MENU_DATA = {
       ]
     },
     {
+      "id": "sunday",
+      "label": "Sunday Pittu Special",
+      "tabLabel": "Sunday Pittu",
+      "note": "Every Sunday · Pittu + Omelette + Sambol with Jaffna-style curry",
+      "sections": [
+        {
+          "layout": "grid",
+          "items": [
+            { "name": "Veg — Chick Pea Curry",  "price": 470,  "note": "Served with Potato Masala instead of Omelette" },
+            { "name": "Chicken Curry",          "price": 650 },
+            { "name": "Prawn Curry",            "price": 750 },
+            { "name": "Cuttle Fish Curry",      "price": 800 },
+            { "name": "Crab Curry",             "price": 1100 },
+            { "name": "Mutton Curry",           "price": 1300 }
+          ]
+        }
+      ]
+    },
+    {
       "id": "rice-curry",
       "label": "Rice & Curry",
       "tabLabel": "Rice & Curry",

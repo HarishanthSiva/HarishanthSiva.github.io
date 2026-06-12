@@ -324,6 +324,61 @@
     </div>
   </section>
 
+  <!-- PITTU SUNDAYS — weekly tradition -->
+  <section class="pittu-sunday" id="pittu-sunday">
+    <div class="ps-inner">
+      <div class="ps-poster reveal">
+        <img src="resources/pittu_sunday/pittu_sunday_web.jpg" alt="Pittu Every Sunday at The Elite Peak — pittu, omelette and sambol with Jaffna-style curries" loading="lazy" />
+        <div class="ps-poster-badge" id="psBadge">Every Sunday</div>
+      </div>
+      <div class="ps-content reveal">
+        <p class="ps-eyebrow">Back by Popular Demand</p>
+        <h2 class="ps-title">Pittu, Every<em>Sunday</em></h2>
+        <p class="ps-thanks">Thank you for making our Pittu Festival a success — it&rsquo;s now a weekly tradition.</p>
+        <div class="ps-next">
+          <span class="ps-next-label">Next Serving</span>
+          <span class="ps-next-date" id="psNextDate">This Sunday</span>
+        </div>
+        <p class="ps-combo">Pittu &middot; Omelette &middot; Sambol &middot; Jaffna-Style Curry</p>
+        <div class="ps-curries">
+          <span>Chick Pea <em>(Veg)</em></span>
+          <span>Chicken</span>
+          <span>Prawn</span>
+          <span>Cuttlefish</span>
+          <span>Crab</span>
+          <span>Mutton</span>
+        </div>
+        <p class="ps-price">From <strong>Rs 470</strong> &middot; Veg option served with Potato Masala</p>
+        <div class="ps-actions">
+          <a href="menu.html?cat=sunday" class="btn btn-gold">View Sunday Menu</a>
+          <a href="tel:+94512225527" class="btn btn-outline-white">📞 Reserve a Table</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      /* Compute next Sunday in Sri Lanka time */
+      var colombo = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Colombo' }));
+      var daysAway = (7 - colombo.getDay()) % 7;
+      var next = new Date(colombo);
+      next.setDate(colombo.getDate() + daysAway);
+      var label = next.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+
+      var dateEl = document.getElementById('psNextDate');
+      var badgeEl = document.getElementById('psBadge');
+      if (daysAway === 0) {
+        dateEl.textContent = 'Today · ' + label;
+        badgeEl.textContent = 'Served Today!';
+        document.getElementById('pittu-sunday').classList.add('ps-today');
+      } else if (daysAway === 1) {
+        dateEl.textContent = 'Tomorrow · ' + label;
+      } else {
+        dateEl.textContent = 'Sunday · ' + label;
+      }
+    })();
+  </script>
+
   <!-- FEATURES STRIP -->
   <div class="features-strip">
     <div class="features-grid" style="grid-template-columns:repeat(4,1fr)">
@@ -412,6 +467,11 @@
       <p class="section-sub section-sub-light">"Every Spice Has a Soul"</p>
     </div>
     <div class="preview-grid reveal-stagger">
+      <a href="menu.html?cat=sunday" class="preview-card reveal">
+        <div class="preview-card-icon">🥥</div>
+        <p class="preview-card-title">Sunday Pittu Special</p>
+        <p class="preview-card-count">Every Sunday · from Rs 470</p>
+      </a>
       <a href="menu.html?cat=soup" class="preview-card reveal">
         <div class="preview-card-icon">🍲</div>
         <p class="preview-card-title">Soups &amp; Noodles</p>

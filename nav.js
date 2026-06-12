@@ -28,6 +28,38 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
+  /* Pittu Sundays announcement bar — permanent weekly promo, dismissible per session */
+  (function () {
+    if (sessionStorage.getItem('ep-pittu-sunday-bar')) return;
+
+    var colombo = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Colombo' }));
+    var daysAway = (7 - colombo.getDay()) % 7;
+    var when = daysAway === 0 ? 'Today' : daysAway === 1 ? 'Tomorrow' : 'This Sunday';
+
+    var isHome = location.pathname === '/' || /index\.html$/.test(location.pathname) || /\/$/.test(location.pathname);
+    var promoHref = isHome ? '#pittu-sunday' : 'index.html#pittu-sunday';
+
+    var bar = document.createElement('div');
+    bar.id = 'ep-promo-bar';
+    bar.className = 'ep-promo-bar';
+    bar.innerHTML =
+      '<a href="' + promoHref + '" class="ep-promo-link">' +
+        '<span class="ep-promo-badge">' + (daysAway === 0 ? 'TODAY' : 'WEEKLY') + '</span>' +
+        '<span><strong>Pittu Every Sunday</strong> &nbsp;·&nbsp; ' + when + ' &nbsp;·&nbsp; from <strong>Rs 470</strong></span>' +
+      '</a>' +
+      '<button class="ep-promo-close" aria-label="Dismiss">✕</button>';
+    document.body.prepend(bar);
+
+    var navEl = document.getElementById('mainNav');
+    if (navEl) navEl.style.top = '44px';
+
+    bar.querySelector('.ep-promo-close').addEventListener('click', function () {
+      bar.remove();
+      if (navEl) navEl.style.top = '';
+      sessionStorage.setItem('ep-pittu-sunday-bar', '1');
+    });
+  })();
+
   /* Floating "Book Now" button — appears after user scrolls 320px */
   (function () {
     const fb = document.createElement('a');
