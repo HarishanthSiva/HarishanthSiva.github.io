@@ -25,7 +25,7 @@ const REVIEWS_CONFIG = {
   // Fallback data shown if API key is not set or request fails
   FALLBACK: {
     rating: 4.7,
-    userRatingCount: 147,
+    userRatingCount: 154,
     reviews: [
       {
         authorName: 'Shalaka Gamage',
